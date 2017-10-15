@@ -40,17 +40,17 @@ config: &config
 version: 2
 
 jobs:
-  node-4:
+  "node-4 musl":
     <<: *config
     docker:
       - image: mhart/alpine-node:4
 
-  node-6:
+  "node-6 musl":
     <<: *config
     docker:
       - image: mhart/alpine-node:6
 
-  node-8:
+  "node-8 musl":
     <<: *config
     docker:
       - image: mhart/alpine-node:8
@@ -59,6 +59,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - node-4
-      - node-6
-      - node-8
+      - "node-4 musl"
+      - "node-6 musl"
+      - "node-8 musl"
