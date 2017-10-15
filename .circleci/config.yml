@@ -5,10 +5,9 @@ config: &config
     - checkout
     - run: git submodule update --init --recursive --remote
     - run: npm install -g node-gyp
-    - run: echo 'export PUBLISH_BINARY=false' >> $BASH_ENV
-    - run: echo 'export JOBS=max' >> $BASH_ENV
-    - run: echo 'export PATH=./node_modules/.bin/:$PATH' >> $BASH_ENV
-    - run: if [[ $CIRCLE_BRANCH == `git describe --tags --always HEAD` ]]; then echo 'export PUBLISH_BINARY=true' >> $BASH_ENV; fi
+    - run: echo 'export PUBLISH_BINARY="false' >> $BASH_ENV
+    - run: echo 'export JOBS="max"' >> $BASH_ENV
+    - run: if [[ $CIRCLE_BRANCH == `git describe --tags --always HEAD` ]]; then echo 'export PUBLISH_BINARY="true"' >> $BASH_ENV; fi
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
     - run: echo -e 'Publishing native platform Binary Package? ->' $PUBLISH_BINARY $JOBS
