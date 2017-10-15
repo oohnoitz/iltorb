@@ -5,12 +5,14 @@ config: &config
     - checkout
     - run: git submodule update --init --recursive --remote
     - run: npm install -g node-gyp
-    - run: echo 'export PUBLISH_BINARY=false' >>
+    - run: echo 'export PUBLISH_BINARY=false' >> $BASH_ENV
     - run: echo 'export JOBS=max' >> $BASH_ENV
     - run: echo 'export PATH=./node_modules/.bin/:$PATH' >> $BASH_ENV
+    - run: if [[ $CIRCLE_BRANCH == `git describe --tas --always HEAD` ]]; then export 'PUBLISH_BINARY=true' >> $BASH_ENV; fi
+    - run: echo 'Publishing native platform Binary Package? ->' $PUBLISH_BINARY
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
-    - run: npm run prebuild
+    - run: if [[ $PUBLISH_BINARY ]]; then npm run prebuild; fi
 
 version: 2
 
