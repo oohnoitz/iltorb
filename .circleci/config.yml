@@ -1,46 +1,27 @@
+config: &config
+  working_directory: ~repo
+  steps:
+    - run: apk add --no-cache make gcc g++ python
+
 version: 2
+
 jobs:
   node-4:
+    <<
     docker:
       - image: mhart/alpine-node:4
     steps:
       - run: apk add --no-cache make gcc g++ python
 
   node-6:
+    <<
     docker:
       - image: mhart/alpine-node:6
-    steps:
-      - run: apk add --no-cache make gcc g++ python
 
   node-8:
+    <<: *config
     docker:
       - image: mhart/alpine-node:8
-    steps:
-      - run: apk add --no-cache make gcc g++ python
-
-
-  build:
-    machine: true
-    working_directory: ~/repo
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
 
 workflows:
   version: 2
@@ -49,8 +30,3 @@ workflows:
       - node-4
       - node-6
       - node-8
-      - build:
-          requires:
-            - node-4
-            - node-6
-            - node-8
