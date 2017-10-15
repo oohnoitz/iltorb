@@ -11,7 +11,7 @@ config: &config
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
     - run: echo -e 'Publishing native platform Binary Package? ->' $PUBLISH_BINARY $JOBS
-    - run: if [[ $PUBLISH_BINARY ]]; then npm run prebuild; fi
+    - run: if [[ $PUBLISH_BINARY == "false" ]]; then npm run prebuild; fi
 
 version: 2
 
