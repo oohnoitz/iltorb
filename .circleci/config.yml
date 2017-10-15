@@ -5,11 +5,12 @@ config: &config
     - checkout
     - run: git submodule update --init --recursive --remote
     - run: npm install -g node-gyp
+    - run: echo 'export PUBLISH_BINARY=false' >>
     - run: echo 'export JOBS=max' >> $BASH_ENV
     - run: echo 'export PATH=./node_modules/.bin/:$PATH' >> $BASH_ENV
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
-    - run: ./node_modules/.bin/detect-libc ./node_modules/.bin/prebuild
+    - run: npm run prebuild
 
 version: 2
 
