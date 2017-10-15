@@ -9,7 +9,7 @@ config: &config
     - run: echo 'export JOBS=max' >> $BASH_ENV
     - run: echo 'export PATH=./node_modules/.bin/:$PATH' >> $BASH_ENV
     - run: if [[ $CIRCLE_BRANCH == `git describe --tags --always HEAD` ]]; then export 'PUBLISH_BINARY=true' >> $BASH_ENV; fi
-    - run: echo 'Publishing native platform Binary Package? ->' $PUBLISH_BINARY
+    - run: echo 'Publishing native platform Binary Package? -> $PUBLISH_BINARY'
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
     - run: if [[ $PUBLISH_BINARY ]]; then npm run prebuild; fi
