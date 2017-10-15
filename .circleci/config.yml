@@ -6,16 +6,19 @@ config: &config
     - run: git submodule update --init --recursive --remote
     - run: npm install -g node-gyp
     - run:
-        name: 'configure ENV'
+        name: 'Configure ENV'
         command: |
-          echo 'export PUBLISH_BINARY=false' >> $BASH_ENV
           echo 'export JOBS=max' >> $BASH_ENV
-    - run: cat $BASH_ENV
+          echo 'export PUBLISH_BINARY=false' >> $BASH_ENV
     - run: if [[ $CIRCLE_BRANCH == `git describe --tags --always HEAD` ]]; then echo 'export PUBLISH_BINARY="true"' >> $BASH_ENV; fi
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
-    - run: echo -e 'Publishing native platform Binary Package? ->' $PUBLISH_BINARY $JOBS
-    - run: if [[ $PUBLISH_BINARY == "false" ]]; then npm run prebuild; fi
+    - run:
+        name: Publish Binaries
+        command: |
+          source $BASH_ENV
+          echo -e 'Publish? ->' $PUBLISH_BINARY $JOBS
+          if [[ $PUBLISH_BINARY == "false" ]]; then npm run prebuild; fi
 
 version: 2
 
