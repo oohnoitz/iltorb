@@ -40,7 +40,7 @@ workflows:
       - node-6
       - node-8
       - build
-        requires:
-          - node-4
-          - node-6
-          - node-8
+          requires:
+            - node-4
+            - node-6
+            - node-8
