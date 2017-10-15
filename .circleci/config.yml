@@ -9,6 +9,7 @@ config: &config
     - run: echo 'export PATH=./node_modules/.bin/:$PATH' >> $BASH_ENV
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
+    - run: ./node_modules/.bin/prebuild
 
 version: 2
 
