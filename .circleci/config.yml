@@ -7,14 +7,12 @@ version: 2
 
 jobs:
   node-4:
-    <<
+    <<: *config
     docker:
       - image: mhart/alpine-node:4
-    steps:
-      - run: apk add --no-cache make gcc g++ python
 
   node-6:
-    <<
+    <<: *config
     docker:
       - image: mhart/alpine-node:6
 
