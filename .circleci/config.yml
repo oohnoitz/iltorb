@@ -4,6 +4,9 @@ config: &config
     - run: apk add --no-cache make gcc g++ python git
     - checkout
     - run: git submodule update --init --recursive --remote
+    - run:
+        name: install node-gyp
+        command: npm install -g node-gyp
 
 version: 2
 
