@@ -12,12 +12,12 @@ config: &config
         command: git submodule update --init --recursive --remote
 
     - run:
-        name: 'Configure ENV'
+        name: 'Configure Environment'
         command: |
           echo 'export JOBS=max' >> $BASH_ENV
           echo 'export PUBLISH_BINARY=false' >> $BASH_ENV
-          if [[ $CIRCLE_BRANCH == `git describe --tags --always HEAD` ]];
-            then echo 'export PUBLISH_BINARY="true"' >> $BASH_ENV;
+          if [[ $CIRCLE_BRANCH == `git describe --tags --always HEAD` ]]; then
+            echo 'export PUBLISH_BINARY="true"' >> $BASH_ENV
           fi
 
     - run: npm install -g node-gyp
@@ -28,9 +28,9 @@ config: &config
         name: Publish Binaries
         command: |
           source $BASH_ENV
-          echo -e 'Publish? ->' $PUBLISH_BINARY $JOBS
-          if [[ $PUBLISH_BINARY == "true" ]];
-            then npm run prebuild;
+          echo -e 'Publish? ->' $PUBLISH_BINARY
+          if [[ $PUBLISH_BINARY == "true" ]]; then
+            npm run prebuild
           fi
           true
 
