@@ -3,12 +3,21 @@ jobs:
   node-4:
     docker:
       - image: mhart/alpine-node:4
+    steps:
+      - run: apk add --no-cache make gcc g++ python
+
   node-6:
     docker:
       - image: mhart/alpine-node:6
+    steps:
+      - run: apk add --no-cache make gcc g++ python
+
   node-8:
     docker:
       - image: mhart/alpine-node:8
+    steps:
+      - run: apk add --no-cache make gcc g++ python
+
 
   build:
     working_directory: ~/repo
