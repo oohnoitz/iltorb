@@ -1,12 +1,12 @@
 version: 2
 jobs:
-  node-4:
+  node_4:
     docker:
       - image: mhart/alpine-node:4
-  node-6:
+  node_6:
     docker:
       - image: mhart/alpine-node:6
-  node-8:
+  node_8:
     docker:
       - image: mhart/alpine-node:8
 
@@ -36,11 +36,11 @@ workflows:
   version: 2
   build:
     jobs:
-      - node-4
-      - node-6
-      - node-8
+      - node_4
+      - node_6
+      - node_8
       - build
           requires:
-            - node-4
-            - node-6
-            - node-8
+            - node_4
+            - node_6
+            - node_8
