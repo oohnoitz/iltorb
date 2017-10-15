@@ -34,6 +34,9 @@ config: &config
           fi
           true
 
+    - store_artifacts:
+        path: ~/repo/prebuilds
+
 version: 2
 
 jobs:
