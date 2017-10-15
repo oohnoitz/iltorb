@@ -21,15 +21,15 @@ config: &config
           fi
 
     - run: npm install -g node-gyp
-
     - run: npm install --build-from-source --unsafe-perm
     - run: npm test
+
     - run:
         name: Publish Binaries
         command: |
           source $BASH_ENV
           echo -e 'Publish? ->' $PUBLISH_BINARY $JOBS
-          if [[ $PUBLISH_BINARY == false ]];
+          if [[ $PUBLISH_BINARY == "true" ]];
             then npm run prebuild;
           fi
           true
