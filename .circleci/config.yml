@@ -7,7 +7,7 @@ config: &config
     - run: npm install -g node-gyp
     - run: echo 'export JOBS=max' >> $BASH_ENV
     - run: echo 'export PATH=./node_modules/.bin/:$PATH' >> $BASH_ENV
-    - run: npm install --build-from-source
+    - run: npm install --build-from-source --unsafe-perm
     - run: npm test
 
 version: 2
