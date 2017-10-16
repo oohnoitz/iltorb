@@ -12,7 +12,7 @@ config: &config
             curl --silent --location "https://rpm.nodesource.com/setup_${NODEJS}.x" | bash -
             curl -O /etc/yum.repos.d/devtools-2.repo https://people.centos.org/tru/devtools-2/devtools-2.repo
             yum -y upgrade
-            yum -y install nodejs devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++
+            yum -y install nodejs devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ git
           fi
 
     - checkout
