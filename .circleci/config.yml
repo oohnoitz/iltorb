@@ -9,7 +9,7 @@ config: &config
           fi
 
           if [[ $DISTRO == "CENTOS" ]]; then
-            curl --silent --location "https://rpm.nodesource.com/setup_$DISTRO.x" | bash -
+            curl --silent --location "https://rpm.nodesource.com/setup_${NODEJS}.x" | bash -
             yum -y install nodejs
             yum groupinstall 'Development Tools'
           fi
