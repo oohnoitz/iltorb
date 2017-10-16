@@ -10,7 +10,6 @@ config: &config
 
           if [[ $DISTRO == "CENTOS" ]]; then
             curl --silent --location "https://rpm.nodesource.com/setup_${NODEJS}.x" | bash -
-            yum -y upgrade
             yum -y install centos-release-scl-rh epel-release https://centos6.iuscommunity.org/ius-release.rpm
             yum -y install devtoolset-3-gcc devtoolset-3-gcc-c++ git2u make
             yum -y install nodejs
@@ -41,7 +40,7 @@ config: &config
         command: |
           source $BASH_ENV
           echo -e 'Publish? ->' $PUBLISH_BINARY
-          if [[ $PUBLISH_BINARY == "true" ]]; then
+          if [[ $PUBLISH_BINARY == "false" ]]; then
             npm run prebuild
           fi
           true
