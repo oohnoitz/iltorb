@@ -40,7 +40,7 @@ config: &config
         command: |
           source $BASH_ENV
           echo -e 'Publish? ->' $PUBLISH_BINARY
-          if [[ $PUBLISH_BINARY == "false" ]]; then
+          if [[ $PUBLISH_BINARY == "true" ]]; then
             npm run prebuild
           fi
           true
@@ -51,7 +51,7 @@ config: &config
 version: 2
 
 jobs:
-  "node-4":
+  "node-4 glibc":
     <<: *config
     docker:
       - image: centos:6.6
@@ -59,7 +59,7 @@ jobs:
           DISTRO: CENTOS
           NODEJS: 4
 
-  "node-6":
+  "node-6 glibc":
     <<: *config
     docker:
       - image: centos:6.6
@@ -67,7 +67,7 @@ jobs:
           DISTRO: CENTOS
           NODEJS: 6
 
-  "node-8":
+  "node-8 glibc":
     <<: *config
     docker:
       - image: centos:6.6
@@ -103,9 +103,9 @@ workflows:
   version: 2
   build:
     jobs:
-      - "node-4"
+      - "node-4 glibc"
       - "node-4 musl"
-      - "node-6"
+      - "node-6 glibc"
       - "node-6 musl"
-      - "node-8"
+      - "node-8 glibc"
       - "node-8 musl"
