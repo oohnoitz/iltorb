@@ -15,6 +15,7 @@ config: &config
             yum -y install epel-release
             yum -y install https://centos6.iuscommunity.org/ius-release.rpm
             yum -y install nodejs devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++ git2u make
+            echo '. /opt/rh/devtoolset-2/enable' >> $BASH_ENV
           fi
 
     - checkout
