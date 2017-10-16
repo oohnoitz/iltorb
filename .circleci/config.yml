@@ -14,7 +14,7 @@ config: &config
             yum -y install centos-release-scl-rh epel-release https://centos6.iuscommunity.org/ius-release.rpm
             yum -y install devtoolset-3-gcc devtoolset-3-gcc-c++ git2u make
             yum -y install nodejs
-            echo '. /opt/rh/devtoolset-2/enable' >> $BASH_ENV
+            echo 'export PATH=/opt/rh/devtoolset-3/root/usr/bin/:$PATH' >> $BASH_ENV
           fi
 
     - checkout
