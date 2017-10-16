@@ -10,7 +10,7 @@ config: &config
 
           if [[ $DISTRO == "CENTOS" ]]; then
             curl --silent --location "https://rpm.nodesource.com/setup_${NODEJS}.x" | bash -
-            wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo
+            curl  http://people.centos.org/tru/devtools-2/devtools-2.repo -o /etc/yum.repos.d/devtools-2.repo
             yum upgrade
             yum -y install nodejs devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++
             yum -y groupinstall 'Development Tools'
