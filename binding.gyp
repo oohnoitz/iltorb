@@ -49,7 +49,17 @@
       ],
       "xcode_settings": {
         "OTHER_CFLAGS" : ["-O2"]
-      }
+      },
+      "conditions": [
+        ['OS=="android"', {
+          'cflags': [
+            '-fPIE'
+          ],
+          'ldflags': [
+            '-fPIE'
+          ]
+        }]
+      ]
     },
     {
       "target_name": "action_after_build",
