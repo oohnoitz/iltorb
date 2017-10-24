@@ -52,6 +52,7 @@
       },
       "conditions": [
         ['OS=="android"', {
+          "cflags": ["-fPIC"],
           "ldflags!": ["-pie"]
         }]
       ]
