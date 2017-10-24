@@ -51,7 +51,9 @@
         "OTHER_CFLAGS" : ["-O2"]
       },
       "conditions": [
-        ['target_arch=="arm"', { 'type': 'static_library' }]
+        ['OS=="android"', {
+          "ldflags!": ["-pie"]
+        }]
       ]
     },
     {
