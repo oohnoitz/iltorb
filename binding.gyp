@@ -50,12 +50,16 @@
       "xcode_settings": {
         "OTHER_CFLAGS" : ["-O2"]
       },
-      "conditions": [
-        ['OS=="android"', {
-          "cflags": ["-fPIC"],
-          "ldflags!": ["-pie"]
-        }]
-      ]
+      "configurations": {
+        "Release": {
+          "conditions": [
+            ['OS=="android"', {
+              "cflags": ["-fPIC"],
+              "ldflags!": ["-pie"]
+            }]
+          ]
+        }
+      }
     },
     {
       "target_name": "action_after_build",
